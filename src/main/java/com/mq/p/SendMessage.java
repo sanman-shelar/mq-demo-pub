@@ -17,12 +17,12 @@ public class SendMessage {
   @Autowired
   private JmsTemplate jmsTemplate;
 
-  @Value("${ibm.queue.name}")
-  private String QUEUE_NAME;
+  @Value("${ibm.topic.name}")
+  private String topicName;
   
   @PostMapping("/send")
   public void send(@RequestBody List<Person> persons) throws JmsException {    
     System.out.println("Sending a transaction.");
-    jmsTemplate.convertAndSend(QUEUE_NAME, persons);
+    jmsTemplate.convertAndSend(topicName, persons);
   }
 }
